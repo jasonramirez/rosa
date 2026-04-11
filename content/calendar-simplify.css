@@ -1,0 +1,154 @@
+/* Rosa - Minimal Google Calendar Styles */
+
+body.rosa-enabled {
+  /* Hide left sidebar with calendar list */
+  --rosa-sidebar-width: 0px;
+}
+
+body.rosa-enabled [role="complementary"] {
+  display: none !important;
+}
+
+/* Hide "More options" and extra buttons in top bar */
+body.rosa-enabled [aria-label="Settings menu"],
+body.rosa-enabled [aria-label="Support"],
+body.rosa-enabled [aria-label="Google apps"] {
+  display: none !important;
+}
+
+/* Hide search bar to var(--background-grid-line-color)uce clutter */
+body.rosa-enabled [aria-label="Search for people, events, and more"],
+body.rosa-enabled input[aria-label="Search"] {
+  opacity: 0.3;
+  transition: opacity 0.2s;
+}
+
+body.rosa-enabled [aria-label="Search for people, events, and more"]:hover,
+body.rosa-enabled input[aria-label="Search"]:hover,
+body.rosa-enabled input[aria-label="Search"]:focus {
+  opacity: 1;
+}
+
+/* Expand main calendar area */
+body.rosa-enabled [role="main"] {
+  margin-left: 0 !important;
+  width: 100% !important;
+}
+
+/* Clean up event cards - minimal borders */
+body.rosa-enabled [data-draggable-id],
+body.rosa-enabled [data-eventchip] {
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+
+/* Softer corners - 2x border radius */
+body.rosa-enabled.rosa-softer-corners [data-draggable-id],
+body.rosa-enabled.rosa-softer-corners [data-eventchip] {
+  border-radius: 8px !important;
+}
+
+/* No borders on events and their pseudo-elements */
+body.rosa-enabled.rosa-no-borders [data-draggable-id],
+body.rosa-enabled.rosa-no-borders [data-eventchip],
+body.rosa-enabled.rosa-no-borders [data-eventchip]::after,
+body.rosa-enabled.rosa-no-borders [data-eventchip]::before {
+  border: none !important;
+}
+
+/* Soft drop shadow on events */
+body.rosa-enabled.rosa-event-shadow [data-draggable-id],
+body.rosa-enabled.rosa-event-shadow [data-eventchip] {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Hide navigation buttons (tasks & calendar switcher) */
+body.rosa-enabled.rosa-hide-nav-buttons [aria-label*="Tasks"],
+body.rosa-enabled.rosa-hide-nav-buttons [aria-label*="Calendar view"],
+body.rosa-enabled.rosa-hide-nav-buttons [aria-label*="Switch to Calendar"],
+body.rosa-enabled.rosa-hide-nav-buttons [role="button"][aria-label*="View"] {
+  display: none !important;
+}
+
+/* Subtle header - match calendar background */
+body.rosa-enabled.rosa-subtle-header [role="banner"] {
+  background-color: #131314 !important;
+}
+
+/* Darken main calendar background */
+body.rosa-enabled.rosa-subtle-header [role="main"],
+body.rosa-enabled.rosa-subtle-header body {
+  background-color: #131314 !important;
+}
+
+/* Subtle header buttons - reduce border opacity */
+body.rosa-enabled.rosa-subtle-header [role="banner"] button,
+body.rosa-enabled.rosa-subtle-header [role="banner"] [role="button"],
+body.rosa-enabled.rosa-subtle-header header button,
+body.rosa-enabled.rosa-subtle-header header [role="button"],
+body.rosa-enabled.rosa-subtle-header [class*="gb_"] {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Hide "Tasks" sidebar if present */
+body.rosa-enabled [aria-label="Side panel"],
+body.rosa-enabled [aria-label="Tasks"] {
+  display: none !important;
+}
+
+/* Cleaner time grid */
+body.rosa-enabled [role="presentation"] {
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Focus mode - dim past events */
+body.rosa-enabled.rosa-focus-mode [data-draggable-id] {
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+body.rosa-enabled.rosa-focus-mode [data-draggable-id]:hover {
+  opacity: 1;
+}
+
+/* Cleaner header */
+body.rosa-enabled header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Hide promotional banners */
+body.rosa-enabled [role="banner"]:not(header) {
+  display: none !important;
+}
+
+/* Dim Grid Mode - minimal grid lines */
+body.rosa-enabled.rosa-dim-grid {
+  --background-grid-line-color: rgba(255, 255, 255, 0.025);
+}
+
+/* Target all descendants but exclude events and event chips */
+body.rosa-enabled.rosa-dim-grid [role="row"] *:not([data-draggable-id]):not([data-eventchip]):not([data-draggable-id] *):not([data-eventchip] *)::after,
+body.rosa-enabled.rosa-dim-grid [role="row"] *:not([data-draggable-id]):not([data-eventchip]):not([data-draggable-id] *):not([data-eventchip] *)::before {
+  border-color: var(--background-grid-line-color) !important;
+}
+
+/* Target presentation area pseudo-elements but exclude events and event chips */
+body.rosa-enabled.rosa-dim-grid [role="presentation"] *:not([data-draggable-id]):not([data-eventchip]):not([data-draggable-id] *):not([data-eventchip] *)::after,
+body.rosa-enabled.rosa-dim-grid [role="presentation"] *:not([data-eventchip]):not([data-draggable-id]):not([data-draggable-id] *):not([data-eventchip] *)::before {
+  border-color: var(--background-grid-line-color) !important;
+}
+
+/* Vertical lines - border-right on column elements */
+body.rosa-enabled.rosa-dim-grid [data-column-index] {
+  border-right-color: var(--background-grid-line-color) !important;
+}
+
+/* Horizontal lines - pseudo-elements */
+body.rosa-enabled.rosa-dim-grid [data-datekey]::after,
+body.rosa-enabled.rosa-dim-grid [data-datekey]::before,
+body.rosa-enabled.rosa-dim-grid [role="gridcell"]::after,
+body.rosa-enabled.rosa-dim-grid [role="gridcell"]::before,
+body.rosa-enabled.rosa-dim-grid [role="columnheader"]::after,
+body.rosa-enabled.rosa-dim-grid [role="columnheader"]::before {
+  border-color: var(--background-grid-line-color) !important;
+}

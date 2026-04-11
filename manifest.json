@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Rosa - Minimal Google Calendar",
+  "version": "1.0.0",
+  "description": "Simplify Google Calendar with a clean, distraction-free interface",
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": ["https://calendar.google.com/*"],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://calendar.google.com/*"],
+      "js": ["content/calendar-simplify.js"],
+      "css": ["content/calendar-simplify.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

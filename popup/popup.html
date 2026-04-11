@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rosa</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Rosa</h1>
+      <p class="subtitle">Minimal Google Calendar</p>
+    </header>
+
+    <div class="controls">
+      <div class="toggle-group">
+        <label class="toggle">
+          <input type="checkbox" id="rosaToggle" checked>
+          <span class="toggle-slider"></span>
+        </label>
+        <div class="toggle-label">
+          <strong>Clean UI</strong>
+          <small>Hide sidebars and clutter</small>
+        </div>
+      </div>
+
+      <div class="toggle-group">
+        <label class="toggle">
+          <input type="checkbox" id="focusToggle">
+          <span class="toggle-slider"></span>
+        </label>
+        <div class="toggle-label">
+          <strong>Focus Mode</strong>
+          <small>Dim past events</small>
+        </div>
+      </div>
+
+      <div class="toggle-group">
+        <label class="toggle">
+          <input type="checkbox" id="dimGridToggle">
+          <span class="toggle-slider"></span>
+        </label>
+        <div class="toggle-label">
+          <strong>Dim Grid</strong>
+          <small>Minimize background lines</small>
+        </div>
+      </div>
+
+      <div class="toggle-group">
+        <label class="toggle">
+          <input type="checkbox" id="softerCornersToggle">
+          <span class="toggle-slider"></span>
+        </label>
+        <div class="toggle-label">
+          <strong>Softer Corners</strong>
+          <small>2x border radius on events</small>
+        </div>
+      </div>
+
+      <div class="toggle-group">
+        <label class="toggle">
+          <input type="checkbox" id="eventBordersToggle">
+          <span class="toggle-slider"></span>
+        </label>
+        <div class="toggle-label">
+          <strong>Hide Borders</strong>
+          <small>Remove event borders</small>
+        </div>
+      </div>
+
+      <div class="toggle-group">
+        <label class="toggle">
+          <input type="checkbox" id="eventShadowToggle">
+          <span class="toggle-slider"></span>
+        </label>
+        <div class="toggle-label">
+          <strong>Event Shadow</strong>
+          <small>Soft drop shadow</small>
+        </div>
+      </div>
+
+      <div class="toggle-group">
+        <label class="toggle">
+          <input type="checkbox" id="hideNavButtonsToggle">
+          <span class="toggle-slider"></span>
+        </label>
+        <div class="toggle-label">
+          <strong>Hide Nav Buttons</strong>
+          <small>Tasks & calendar switcher</small>
+        </div>
+      </div>
+
+      <div class="toggle-group">
+        <label class="toggle">
+          <input type="checkbox" id="subtleHeaderToggle">
+          <span class="toggle-slider"></span>
+        </label>
+        <div class="toggle-label">
+          <strong>Subtle Header</strong>
+          <small>Match calendar background</small>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <a href="https://github.com/jasonramirez/rosa" target="_blank">About</a>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

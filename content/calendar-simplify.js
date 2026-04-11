@@ -9,7 +9,9 @@ chrome.storage.sync.get([
   'rosaEventBorders',
   'rosaEventShadow',
   'rosaHideNavButtons',
-  'rosaSubtleHeader'
+  'rosaSubtleHeader',
+  'rosaSubtleTimes',
+  'rosaSubtleDates'
 ], (result) => {
   const enabled = result.rosaEnabled !== false; // Default to enabled
   const focusMode = result.rosaFocusMode || false;
@@ -19,8 +21,10 @@ chrome.storage.sync.get([
   const eventShadow = result.rosaEventShadow || false;
   const hideNavButtons = result.rosaHideNavButtons || false;
   const subtleHeader = result.rosaSubtleHeader || false;
+  const subtleTimes = result.rosaSubtleTimes || false;
+  const subtleDates = result.rosaSubtleDates || false;
 
-  applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, hideNavButtons, subtleHeader);
+  applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, hideNavButtons, subtleHeader, subtleTimes, subtleDates);
 });
 
 // Listen for toggle from popup
@@ -34,12 +38,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       message.eventBorders,
       message.eventShadow,
       message.hideNavButtons,
-      message.subtleHeader
+      message.subtleHeader,
+      message.subtleTimes,
+      message.subtleDates
     );
   }
 });
 
-function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, hideNavButtons, subtleHeader) {
+function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, hideNavButtons, subtleHeader, subtleTimes, subtleDates) {
   if (enabled) {
     document.body.classList.add('rosa-enabled');
 
@@ -84,6 +90,18 @@ function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eve
     } else {
       document.body.classList.remove('rosa-subtle-header');
     }
+
+    if (subtleTimes) {
+      document.body.classList.add('rosa-subtle-times');
+    } else {
+      document.body.classList.remove('rosa-subtle-times');
+    }
+
+    if (subtleDates) {
+      document.body.classList.add('rosa-subtle-dates');
+    } else {
+      document.body.classList.remove('rosa-subtle-dates');
+    }
   } else {
     document.body.classList.remove(
       'rosa-enabled',
@@ -93,7 +111,9 @@ function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eve
       'rosa-no-borders',
       'rosa-event-shadow',
       'rosa-hide-nav-buttons',
-      'rosa-subtle-header'
+      'rosa-subtle-header',
+      'rosa-subtle-times',
+      'rosa-subtle-dates'
     );
   }
 }

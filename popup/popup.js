@@ -8,6 +8,8 @@ const eventBordersToggle = document.getElementById('eventBordersToggle');
 const eventShadowToggle = document.getElementById('eventShadowToggle');
 const hideNavButtonsToggle = document.getElementById('hideNavButtonsToggle');
 const subtleHeaderToggle = document.getElementById('subtleHeaderToggle');
+const subtleTimesToggle = document.getElementById('subtleTimesToggle');
+const subtleDatesToggle = document.getElementById('subtleDatesToggle');
 
 // Load saved settings
 chrome.storage.sync.get([
@@ -18,7 +20,9 @@ chrome.storage.sync.get([
   'rosaEventBorders',
   'rosaEventShadow',
   'rosaHideNavButtons',
-  'rosaSubtleHeader'
+  'rosaSubtleHeader',
+  'rosaSubtleTimes',
+  'rosaSubtleDates'
 ], (result) => {
   rosaToggle.checked = result.rosaEnabled !== false; // Default to enabled
   focusToggle.checked = result.rosaFocusMode || false;
@@ -28,6 +32,8 @@ chrome.storage.sync.get([
   eventShadowToggle.checked = result.rosaEventShadow || false;
   hideNavButtonsToggle.checked = result.rosaHideNavButtons || false;
   subtleHeaderToggle.checked = result.rosaSubtleHeader || false;
+  subtleTimesToggle.checked = result.rosaSubtleTimes || false;
+  subtleDatesToggle.checked = result.rosaSubtleDates || false;
 });
 
 // Handle toggle changes
@@ -40,6 +46,8 @@ function updateSettings() {
   const eventShadow = eventShadowToggle.checked;
   const hideNavButtons = hideNavButtonsToggle.checked;
   const subtleHeader = subtleHeaderToggle.checked;
+  const subtleTimes = subtleTimesToggle.checked;
+  const subtleDates = subtleDatesToggle.checked;
 
   // Send message to content script (only if on Google Calendar)
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -55,7 +63,9 @@ function updateSettings() {
           eventBorders,
           eventShadow,
           hideNavButtons,
-          subtleHeader
+          subtleHeader,
+          subtleTimes,
+          subtleDates
         },
         (response) => {
           // Ignore errors (e.g., if content script isn't loaded yet)
@@ -106,5 +116,15 @@ hideNavButtonsToggle.addEventListener('change', () => {
 
 subtleHeaderToggle.addEventListener('change', () => {
   chrome.storage.sync.set({ rosaSubtleHeader: subtleHeaderToggle.checked });
+  updateSettings();
+});
+
+subtleTimesToggle.addEventListener('change', () => {
+  chrome.storage.sync.set({ rosaSubtleTimes: subtleTimesToggle.checked });
+  updateSettings();
+});
+
+subtleDatesToggle.addEventListener('change', () => {
+  chrome.storage.sync.set({ rosaSubtleDates: subtleDatesToggle.checked });
   updateSettings();
 });

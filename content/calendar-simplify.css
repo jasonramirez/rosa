@@ -58,8 +58,8 @@ body.rosa-enabled.rosa-no-borders [data-eventchip]::before {
 
 /* Soft drop shadow on events */
 body.rosa-enabled.rosa-event-shadow [data-draggable-id],
-body.rosa-enabled.rosa-event-shadow [data-eventchip] {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+body.rosa-enabled.rosa-event-shadow [data-eventchip]:not([data-is-picker]) {
+  box-shadow: 0 8px 36px rgba(0, 0, 0, 0.4) !important;
 }
 
 /* Hide navigation buttons (tasks & calendar switcher) */
@@ -72,13 +72,23 @@ body.rosa-enabled.rosa-hide-nav-buttons [role="button"][aria-label*="View"] {
 
 /* Subtle header - match calendar background */
 body.rosa-enabled.rosa-subtle-header [role="banner"] {
-  background-color: #131314 !important;
+  background-color: #2d2d2d !important;
 }
 
 /* Darken main calendar background */
 body.rosa-enabled.rosa-subtle-header [role="main"],
-body.rosa-enabled.rosa-subtle-header body {
-  background-color: #131314 !important;
+body.rosa-enabled.rosa-subtle-header body,
+body.rosa-enabled.rosa-subtle-header [data-enable-grid-navigation] {
+  background-color: #2d2d2d !important;
+}
+
+/* Remove background from specific elements */
+body.rosa-enabled.rosa-subtle-header .R6TFwe,
+body.rosa-enabled.rosa-subtle-header .g28fdb.F262Ye,
+body.rosa-enabled.rosa-subtle-header .sS0sZd,
+body.rosa-enabled.rosa-subtle-header .H4QSac,
+body.rosa-enabled.rosa-subtle-header .JMX7ge {
+  background: none !important;
 }
 
 /* Subtle header buttons - reduce border opacity */
@@ -90,9 +100,37 @@ body.rosa-enabled.rosa-subtle-header [class*="gb_"] {
   border-color: rgba(255, 255, 255, 0.1) !important;
 }
 
+/* Remove header border */
+body.rosa-enabled.rosa-subtle-header header,
+body.rosa-enabled.rosa-subtle-header [role="banner"] {
+  border-bottom: none !important;
+}
+
+/* Subtle times - 50% opacity on time labels */
+body.rosa-enabled.rosa-subtle-times .XsRa1c span {
+  opacity: 0.5 !important;
+}
+
+/* Subtle dates - dim past/future dates (not today) */
+body.rosa-enabled.rosa-subtle-dates [role="columnheader"]:not(:has([aria-label*="today"])) {
+  opacity: 0.3 !important;
+}
+
+/* Today - remove background and make text white */
+body.rosa-enabled.rosa-subtle-dates [aria-label*="today"],
+body.rosa-enabled.rosa-subtle-dates [aria-label*="today"] * {
+  background: none !important;
+  color: white !important;
+}
+
 /* Hide "Tasks" sidebar if present */
 body.rosa-enabled [aria-label="Side panel"],
 body.rosa-enabled [aria-label="Tasks"] {
+  display: none !important;
+}
+
+/* Hide details panel elements */
+body.rosa-enabled [data-keeps-details-open] {
   display: none !important;
 }
 

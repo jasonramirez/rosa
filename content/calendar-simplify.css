@@ -35,16 +35,23 @@ body.rosa-enabled [role="main"] {
   width: 100% !important;
 }
 
+/* Remove left padding from grid navigation */
+body.rosa-enabled [data-enable-grid-navigation] {
+  padding-left: 0 !important;
+}
+
 /* Clean up event cards - minimal borders */
 body.rosa-enabled [data-draggable-id],
-body.rosa-enabled [data-eventchip] {
+body.rosa-enabled [data-eventchip],
+body.rosa-enabled [data-stacked-layout-chip] {
   border-radius: 4px !important;
   box-shadow: none !important;
 }
 
 /* Softer corners - 2x border radius */
 body.rosa-enabled.rosa-softer-corners [data-draggable-id],
-body.rosa-enabled.rosa-softer-corners [data-eventchip] {
+body.rosa-enabled.rosa-softer-corners [data-eventchip],
+body.rosa-enabled.rosa-softer-corners [data-stacked-layout-chip] {
   border-radius: 8px !important;
 }
 
@@ -52,7 +59,10 @@ body.rosa-enabled.rosa-softer-corners [data-eventchip] {
 body.rosa-enabled.rosa-no-borders [data-draggable-id],
 body.rosa-enabled.rosa-no-borders [data-eventchip],
 body.rosa-enabled.rosa-no-borders [data-eventchip]::after,
-body.rosa-enabled.rosa-no-borders [data-eventchip]::before {
+body.rosa-enabled.rosa-no-borders [data-eventchip]::before,
+body.rosa-enabled.rosa-no-borders [data-stacked-layout-chip],
+body.rosa-enabled.rosa-no-borders [data-stacked-layout-chip]::after,
+body.rosa-enabled.rosa-no-borders [data-stacked-layout-chip]::before {
   border: none !important;
 }
 
@@ -60,6 +70,11 @@ body.rosa-enabled.rosa-no-borders [data-eventchip]::before {
 body.rosa-enabled.rosa-event-shadow [data-draggable-id],
 body.rosa-enabled.rosa-event-shadow [data-eventchip]:not([data-is-picker]) {
   box-shadow: 0 8px 36px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Dotted borders on unaccepted events */
+body.rosa-enabled.rosa-dotted-unaccepted .LKeQwe {
+  border-style: dotted !important;
 }
 
 /* Hide navigation buttons (tasks & calendar switcher) */
@@ -87,7 +102,8 @@ body.rosa-enabled.rosa-subtle-header .R6TFwe,
 body.rosa-enabled.rosa-subtle-header .g28fdb.F262Ye,
 body.rosa-enabled.rosa-subtle-header .sS0sZd,
 body.rosa-enabled.rosa-subtle-header .H4QSac,
-body.rosa-enabled.rosa-subtle-header .JMX7ge {
+body.rosa-enabled.rosa-subtle-header .JMX7ge,
+body.rosa-enabled.rosa-subtle-header .aLWRge {
   background: none !important;
 }
 

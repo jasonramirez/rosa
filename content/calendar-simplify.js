@@ -8,6 +8,7 @@ chrome.storage.sync.get([
   'rosaSofterCorners',
   'rosaEventBorders',
   'rosaEventShadow',
+  'rosaDottedUnaccepted',
   'rosaHideNavButtons',
   'rosaSubtleHeader',
   'rosaSubtleTimes',
@@ -19,12 +20,13 @@ chrome.storage.sync.get([
   const softerCorners = result.rosaSofterCorners || false;
   const eventBorders = result.rosaEventBorders || false; // Default to showing borders
   const eventShadow = result.rosaEventShadow || false;
+  const dottedUnaccepted = result.rosaDottedUnaccepted || false;
   const hideNavButtons = result.rosaHideNavButtons || false;
   const subtleHeader = result.rosaSubtleHeader || false;
   const subtleTimes = result.rosaSubtleTimes || false;
   const subtleDates = result.rosaSubtleDates || false;
 
-  applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, hideNavButtons, subtleHeader, subtleTimes, subtleDates);
+  applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, dottedUnaccepted, hideNavButtons, subtleHeader, subtleTimes, subtleDates);
 });
 
 // Listen for toggle from popup
@@ -37,6 +39,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       message.softerCorners,
       message.eventBorders,
       message.eventShadow,
+      message.dottedUnaccepted,
       message.hideNavButtons,
       message.subtleHeader,
       message.subtleTimes,
@@ -45,7 +48,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
-function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, hideNavButtons, subtleHeader, subtleTimes, subtleDates) {
+function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, dottedUnaccepted, hideNavButtons, subtleHeader, subtleTimes, subtleDates) {
   if (enabled) {
     document.body.classList.add('rosa-enabled');
 
@@ -79,6 +82,12 @@ function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eve
       document.body.classList.remove('rosa-event-shadow');
     }
 
+    if (dottedUnaccepted) {
+      document.body.classList.add('rosa-dotted-unaccepted');
+    } else {
+      document.body.classList.remove('rosa-dotted-unaccepted');
+    }
+
     if (hideNavButtons) {
       document.body.classList.add('rosa-hide-nav-buttons');
     } else {
@@ -110,6 +119,7 @@ function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eve
       'rosa-softer-corners',
       'rosa-no-borders',
       'rosa-event-shadow',
+      'rosa-dotted-unaccepted',
       'rosa-hide-nav-buttons',
       'rosa-subtle-header',
       'rosa-subtle-times',

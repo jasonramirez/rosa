@@ -6,6 +6,7 @@ const dimGridToggle = document.getElementById('dimGridToggle');
 const softerCornersToggle = document.getElementById('softerCornersToggle');
 const eventBordersToggle = document.getElementById('eventBordersToggle');
 const eventShadowToggle = document.getElementById('eventShadowToggle');
+const dottedUnacceptedToggle = document.getElementById('dottedUnacceptedToggle');
 const hideNavButtonsToggle = document.getElementById('hideNavButtonsToggle');
 const subtleHeaderToggle = document.getElementById('subtleHeaderToggle');
 const subtleTimesToggle = document.getElementById('subtleTimesToggle');
@@ -19,6 +20,7 @@ chrome.storage.sync.get([
   'rosaSofterCorners',
   'rosaEventBorders',
   'rosaEventShadow',
+  'rosaDottedUnaccepted',
   'rosaHideNavButtons',
   'rosaSubtleHeader',
   'rosaSubtleTimes',
@@ -30,6 +32,7 @@ chrome.storage.sync.get([
   softerCornersToggle.checked = result.rosaSofterCorners || false;
   eventBordersToggle.checked = result.rosaEventBorders || false; // Default to showing borders
   eventShadowToggle.checked = result.rosaEventShadow || false;
+  dottedUnacceptedToggle.checked = result.rosaDottedUnaccepted || false;
   hideNavButtonsToggle.checked = result.rosaHideNavButtons || false;
   subtleHeaderToggle.checked = result.rosaSubtleHeader || false;
   subtleTimesToggle.checked = result.rosaSubtleTimes || false;
@@ -44,6 +47,7 @@ function updateSettings() {
   const softerCorners = softerCornersToggle.checked;
   const eventBorders = eventBordersToggle.checked;
   const eventShadow = eventShadowToggle.checked;
+  const dottedUnaccepted = dottedUnacceptedToggle.checked;
   const hideNavButtons = hideNavButtonsToggle.checked;
   const subtleHeader = subtleHeaderToggle.checked;
   const subtleTimes = subtleTimesToggle.checked;
@@ -62,6 +66,7 @@ function updateSettings() {
           softerCorners,
           eventBorders,
           eventShadow,
+          dottedUnaccepted,
           hideNavButtons,
           subtleHeader,
           subtleTimes,
@@ -100,12 +105,22 @@ softerCornersToggle.addEventListener('change', () => {
 });
 
 eventBordersToggle.addEventListener('change', () => {
+  // If hide borders is enabled, turn off dotted unaccepted
+  if (eventBordersToggle.checked) {
+    dottedUnacceptedToggle.checked = false;
+    chrome.storage.sync.set({ rosaDottedUnaccepted: false });
+  }
   chrome.storage.sync.set({ rosaEventBorders: eventBordersToggle.checked });
   updateSettings();
 });
 
 eventShadowToggle.addEventListener('change', () => {
   chrome.storage.sync.set({ rosaEventShadow: eventShadowToggle.checked });
+  updateSettings();
+});
+
+dottedUnacceptedToggle.addEventListener('change', () => {
+  chrome.storage.sync.set({ rosaDottedUnaccepted: dottedUnacceptedToggle.checked });
   updateSettings();
 });
 

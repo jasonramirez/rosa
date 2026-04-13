@@ -11,6 +11,7 @@ const hideNavButtonsToggle = document.getElementById('hideNavButtonsToggle');
 const subtleHeaderToggle = document.getElementById('subtleHeaderToggle');
 const subtleTimesToggle = document.getElementById('subtleTimesToggle');
 const subtleDatesToggle = document.getElementById('subtleDatesToggle');
+const hideLogoToggle = document.getElementById('hideLogoToggle');
 
 // Load saved settings
 chrome.storage.sync.get([
@@ -24,7 +25,8 @@ chrome.storage.sync.get([
   'rosaHideNavButtons',
   'rosaSubtleHeader',
   'rosaSubtleTimes',
-  'rosaSubtleDates'
+  'rosaSubtleDates',
+  'rosaHideLogo'
 ], (result) => {
   rosaToggle.checked = result.rosaEnabled !== false; // Default to enabled
   focusToggle.checked = result.rosaFocusMode || false;
@@ -37,6 +39,7 @@ chrome.storage.sync.get([
   subtleHeaderToggle.checked = result.rosaSubtleHeader || false;
   subtleTimesToggle.checked = result.rosaSubtleTimes || false;
   subtleDatesToggle.checked = result.rosaSubtleDates || false;
+  hideLogoToggle.checked = result.rosaHideLogo || false;
 });
 
 // Handle toggle changes
@@ -52,6 +55,7 @@ function updateSettings() {
   const subtleHeader = subtleHeaderToggle.checked;
   const subtleTimes = subtleTimesToggle.checked;
   const subtleDates = subtleDatesToggle.checked;
+  const hideLogo = hideLogoToggle.checked;
 
   // Send message to content script (only if on Google Calendar)
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -70,7 +74,8 @@ function updateSettings() {
           hideNavButtons,
           subtleHeader,
           subtleTimes,
-          subtleDates
+          subtleDates,
+          hideLogo
         },
         (response) => {
           // Ignore errors (e.g., if content script isn't loaded yet)
@@ -141,5 +146,10 @@ subtleTimesToggle.addEventListener('change', () => {
 
 subtleDatesToggle.addEventListener('change', () => {
   chrome.storage.sync.set({ rosaSubtleDates: subtleDatesToggle.checked });
+  updateSettings();
+});
+
+hideLogoToggle.addEventListener('change', () => {
+  chrome.storage.sync.set({ rosaHideLogo: hideLogoToggle.checked });
   updateSettings();
 });

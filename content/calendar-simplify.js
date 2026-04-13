@@ -12,7 +12,8 @@ chrome.storage.sync.get([
   'rosaHideNavButtons',
   'rosaSubtleHeader',
   'rosaSubtleTimes',
-  'rosaSubtleDates'
+  'rosaSubtleDates',
+  'rosaHideLogo'
 ], (result) => {
   const enabled = result.rosaEnabled !== false; // Default to enabled
   const focusMode = result.rosaFocusMode || false;
@@ -25,8 +26,9 @@ chrome.storage.sync.get([
   const subtleHeader = result.rosaSubtleHeader || false;
   const subtleTimes = result.rosaSubtleTimes || false;
   const subtleDates = result.rosaSubtleDates || false;
+  const hideLogo = result.rosaHideLogo || false;
 
-  applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, dottedUnaccepted, hideNavButtons, subtleHeader, subtleTimes, subtleDates);
+  applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, dottedUnaccepted, hideNavButtons, subtleHeader, subtleTimes, subtleDates, hideLogo);
 });
 
 // Listen for toggle from popup
@@ -43,12 +45,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       message.hideNavButtons,
       message.subtleHeader,
       message.subtleTimes,
-      message.subtleDates
+      message.subtleDates,
+      message.hideLogo
     );
   }
 });
 
-function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, dottedUnaccepted, hideNavButtons, subtleHeader, subtleTimes, subtleDates) {
+function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, dottedUnaccepted, hideNavButtons, subtleHeader, subtleTimes, subtleDates, hideLogo) {
   if (enabled) {
     document.body.classList.add('rosa-enabled');
 
@@ -111,6 +114,12 @@ function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eve
     } else {
       document.body.classList.remove('rosa-subtle-dates');
     }
+
+    if (hideLogo) {
+      document.body.classList.add('rosa-hide-logo');
+    } else {
+      document.body.classList.remove('rosa-hide-logo');
+    }
   } else {
     document.body.classList.remove(
       'rosa-enabled',
@@ -123,7 +132,8 @@ function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eve
       'rosa-hide-nav-buttons',
       'rosa-subtle-header',
       'rosa-subtle-times',
-      'rosa-subtle-dates'
+      'rosa-subtle-dates',
+      'rosa-hide-logo'
     );
   }
 }

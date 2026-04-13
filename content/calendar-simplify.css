@@ -1,14 +1,5 @@
 /* Rosa - Minimal Google Calendar Styles */
 
-body.rosa-enabled {
-  /* Hide left sidebar with calendar list */
-  --rosa-sidebar-width: 0px;
-}
-
-body.rosa-enabled [role="complementary"] {
-  display: none !important;
-}
-
 /* Hide "More options" and extra buttons in top bar */
 body.rosa-enabled [aria-label="Settings menu"],
 body.rosa-enabled [aria-label="Support"],
@@ -27,17 +18,6 @@ body.rosa-enabled [aria-label="Search for people, events, and more"]:hover,
 body.rosa-enabled input[aria-label="Search"]:hover,
 body.rosa-enabled input[aria-label="Search"]:focus {
   opacity: 1;
-}
-
-/* Expand main calendar area */
-body.rosa-enabled [role="main"] {
-  margin-left: 0 !important;
-  width: 100% !important;
-}
-
-/* Remove left padding from grid navigation */
-body.rosa-enabled [data-enable-grid-navigation] {
-  padding-left: 0 !important;
 }
 
 /* Clean up event cards - minimal borders */
@@ -139,17 +119,6 @@ body.rosa-enabled.rosa-subtle-dates [aria-label*="today"] * {
   color: white !important;
 }
 
-/* Hide "Tasks" sidebar if present */
-body.rosa-enabled [aria-label="Side panel"],
-body.rosa-enabled [aria-label="Tasks"] {
-  display: none !important;
-}
-
-/* Hide details panel elements */
-body.rosa-enabled [data-keeps-details-open] {
-  display: none !important;
-}
-
 /* Cleaner time grid */
 body.rosa-enabled [role="presentation"] {
   border-color: rgba(0, 0, 0, 0.06) !important;
@@ -205,4 +174,167 @@ body.rosa-enabled.rosa-dim-grid [role="gridcell"]::before,
 body.rosa-enabled.rosa-dim-grid [role="columnheader"]::after,
 body.rosa-enabled.rosa-dim-grid [role="columnheader"]::before {
   border-color: var(--background-grid-line-color) !important;
+}
+
+/* Hide Logo - hide Google Calendar logo and "Calendar" text only */
+/* Target the logo container specifically - usually has class like .gb_Pc or similar */
+body.rosa-enabled.rosa-hide-logo [role="banner"] a[href*="calendar.google.com"] img,
+body.rosa-enabled.rosa-hide-logo [role="banner"] a[aria-label*="Google Calendar"],
+body.rosa-enabled.rosa-hide-logo [role="banner"] .logo,
+body.rosa-enabled.rosa-hide-logo [role="banner"] [class*="logo"],
+body.rosa-enabled.rosa-hide-logo header > div:first-child > div:first-child:has(img[src*="logo"]),
+body.rosa-enabled.rosa-hide-logo [role="banner"] > div:first-of-type > div:first-child,
+body.rosa-enabled.rosa-hide-logo header [href="/calendar"],
+body.rosa-enabled.rosa-hide-logo [role="banner"] > div:first-child,
+body.rosa-enabled.rosa-hide-logo header > div:first-child > a,
+body.rosa-enabled.rosa-hide-logo [role="banner"] a[aria-label*="Calendar"] {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Exclude user avatars and profile images from hiding */
+body.rosa-enabled.rosa-hide-logo [aria-label*="profile"],
+body.rosa-enabled.rosa-hide-logo [aria-label*="profile"] *,
+body.rosa-enabled.rosa-hide-logo [aria-label*="Account"],
+body.rosa-enabled.rosa-hide-logo [aria-label*="Account"] *,
+body.rosa-enabled.rosa-hide-logo [aria-label*="Google Account"],
+body.rosa-enabled.rosa-hide-logo [aria-label*="Google Account"] *,
+body.rosa-enabled.rosa-hide-logo [data-identifier],
+body.rosa-enabled.rosa-hide-logo [data-identifier] *,
+body.rosa-enabled.rosa-hide-logo .gb_d,
+body.rosa-enabled.rosa-hide-logo .gb_d *,
+body.rosa-enabled.rosa-hide-logo header > div:last-child,
+body.rosa-enabled.rosa-hide-logo header > div:last-child * {
+  display: block !important;
+  visibility: visible !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Hide just the "Calendar" text and icon elements */
+body.rosa-enabled.rosa-hide-logo [role="banner"] span:has(+ [aria-label*="Main menu"]),
+body.rosa-enabled.rosa-hide-logo [role="banner"] h1:has(img),
+body.rosa-enabled.rosa-hide-logo header span[class*="gb"],
+body.rosa-enabled.rosa-hide-logo [role="banner"] .gb_Pc,
+body.rosa-enabled.rosa-hide-logo [role="banner"] > div:first-child svg,
+body.rosa-enabled.rosa-hide-logo header > div > div:first-child > a,
+body.rosa-enabled.rosa-hide-logo header > div > a:first-child {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Shift navigation controls (Today, arrows, Month) to the left when logo is hidden */
+body.rosa-enabled.rosa-hide-logo [role="banner"] {
+  padding-left: 0px !important;
+  gap: 8px !important;
+  justify-content: flex-start !important;
+}
+
+/* Reduce left padding on the hamburger menu container */
+body.rosa-enabled.rosa-hide-logo .gb_Td.gb_sd {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Remove margin from the navigation container and buttons */
+body.rosa-enabled.rosa-hide-logo [role="banner"] > div:not(:first-child),
+body.rosa-enabled.rosa-hide-logo [role="banner"] > div:nth-child(2),
+body.rosa-enabled.rosa-hide-logo [role="banner"] [aria-label*="Today"],
+body.rosa-enabled.rosa-hide-logo [role="banner"] [aria-label*="view"],
+body.rosa-enabled.rosa-hide-logo [role="banner"] button {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Align the navigation controls container to the left */
+body.rosa-enabled.rosa-hide-logo header > div,
+body.rosa-enabled.rosa-hide-logo [role="banner"] > div {
+  justify-content: flex-start !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+/* Remove any centering from the date picker and navigation group */
+body.rosa-enabled.rosa-hide-logo [role="banner"] [aria-label*="April"],
+body.rosa-enabled.rosa-hide-logo [role="banner"] [aria-label*="Date selector"] {
+  margin-left: 0 !important;
+}
+
+/* Add border to left/right arrow buttons to match Today button */
+body.rosa-enabled.rosa-hide-logo [role="banner"] [aria-label*="Next"],
+body.rosa-enabled.rosa-hide-logo [role="banner"] [aria-label*="Previous"],
+body.rosa-enabled.rosa-hide-logo [role="banner"] button[aria-label*="Next"],
+body.rosa-enabled.rosa-hide-logo [role="banner"] button[aria-label*="Previous"] {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  padding: 8px 24px !important;
+  margin-left: 8px !important;
+  min-height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Style date picker button to match Today button */
+body.rosa-enabled.rosa-hide-logo [role="banner"] [aria-label*="Date selector"],
+body.rosa-enabled.rosa-hide-logo [role="banner"] button[aria-label*="Date selector"] {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  padding: 6px 16px !important;
+  margin-left: 8px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}
+
+/* Center the date picker text vertically */
+body.rosa-enabled.rosa-hide-logo .XuJrye,
+body.rosa-enabled.rosa-hide-logo .UyW9db,
+body.rosa-enabled.rosa-hide-logo .x5FT4e {
+  display: flex !important;
+  align-items: center !important;
+  line-height: 1 !important;
+}
+
+/* Shrink date picker text font size */
+body.rosa-enabled.rosa-hide-logo [role="banner"] [aria-label*="Date selector"] span,
+body.rosa-enabled.rosa-hide-logo [role="banner"] [aria-label*="Date selector"] h1,
+body.rosa-enabled.rosa-hide-logo [role="banner"] [aria-label*="Date selector"] h2 {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+/* Remove min-width from hamburger menu container */
+body.rosa-enabled.rosa-hide-logo .gb_Td {
+  min-width: 0 !important;
+  width: auto !important;
+}
+
+/* Style the dropdown selector (Week/Month/Year view) to match Today button */
+body.rosa-enabled.rosa-hide-logo [role="banner"] .nUt0vb,
+body.rosa-enabled.rosa-hide-logo [role="banner"] button.BXgjid {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  padding: 6px 16px !important;
+  margin-left: 8px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+/* Style the text inside the dropdown selector */
+body.rosa-enabled.rosa-hide-logo .XuJrye,
+body.rosa-enabled.rosa-hide-logo .UyW9db {
+  font-size: 14px !important;
+  font-weight: 500 !important;
 }

@@ -4,8 +4,9 @@ A Chrome extension that simplifies Google Calendar with a clean, distraction-fre
 
 ## Features
 
-- **Clean UI**: Hides sidebars, removes clutter, and streamlines the calendar view
+- **Clean UI**: Removes clutter and streamlines the calendar view
 - **Focus Mode**: Dims past events to help you focus on what's next
+- **Hide Logo**: Hides the Google Calendar logo and text in the header
 - **Toggleable**: Easily turn features on/off with the popup menu
 - **Lightweight**: Pure CSS and vanilla JavaScript, no dependencies
 
@@ -19,13 +20,13 @@ A Chrome extension that simplifies Google Calendar with a clean, distraction-fre
 4. Click "Load unpacked"
 5. Select the `rosa` folder
 
-### What Gets Hidden
+### What Can Be Hidden
 
-- Left sidebar with calendar list
-- Right sidebar (Tasks panel)
-- Settings menu, support, and Google apps buttons
-- Promotional banners
-- Reduced visual clutter on event cards
+- Settings menu, support, and Google apps buttons (Clean UI)
+- Promotional banners (Clean UI)
+- Google Calendar logo and text (Hide Logo)
+- Navigation buttons for Tasks and calendar switcher (optional)
+- Reduced visual clutter on event cards (Clean UI)
 
 ## Usage
 
@@ -33,6 +34,8 @@ A Chrome extension that simplifies Google Calendar with a clean, distraction-fre
 2. Click the Rosa extension icon in your toolbar
 3. Toggle "Clean UI" to enable/disable the minimal interface
 4. Toggle "Focus Mode" to dim past events
+5. Toggle "Hide Logo" to hide the Google Calendar branding
+6. Customize with additional options like softer corners, event shadows, and more
 
 ## Development
 

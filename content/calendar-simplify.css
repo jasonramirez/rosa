@@ -177,17 +177,11 @@ body.rosa-enabled.rosa-dim-grid [role="columnheader"]::before {
 }
 
 /* Hide Logo - hide Google Calendar logo and "Calendar" text only */
-/* Target the logo container specifically - usually has class like .gb_Pc or similar */
-body.rosa-enabled.rosa-hide-logo [role="banner"] a[href*="calendar.google.com"] img,
-body.rosa-enabled.rosa-hide-logo [role="banner"] a[aria-label*="Google Calendar"],
-body.rosa-enabled.rosa-hide-logo [role="banner"] .logo,
-body.rosa-enabled.rosa-hide-logo [role="banner"] [class*="logo"],
-body.rosa-enabled.rosa-hide-logo header > div:first-child > div:first-child:has(img[src*="logo"]),
-body.rosa-enabled.rosa-hide-logo [role="banner"] > div:first-of-type > div:first-child,
-body.rosa-enabled.rosa-hide-logo header [href="/calendar"],
-body.rosa-enabled.rosa-hide-logo [role="banner"] > div:first-child,
-body.rosa-enabled.rosa-hide-logo header > div:first-child > a,
-body.rosa-enabled.rosa-hide-logo [role="banner"] a[aria-label*="Calendar"] {
+/* Target Calendar logo using specific class selectors */
+body.rosa-enabled.rosa-hide-logo [role="banner"] .gb_Uc,
+body.rosa-enabled.rosa-hide-logo [role="banner"] .gb_Vc.gb_ke,
+body.rosa-enabled.rosa-hide-logo [role="banner"] .gb_Wc,
+body.rosa-enabled.rosa-hide-logo [role="banner"] .gb_Rd {
   display: none !important;
   visibility: hidden !important;
   width: 0 !important;
@@ -195,34 +189,15 @@ body.rosa-enabled.rosa-hide-logo [role="banner"] a[aria-label*="Calendar"] {
   overflow: hidden !important;
 }
 
-/* Exclude user avatars and profile images from hiding */
-body.rosa-enabled.rosa-hide-logo [aria-label*="profile"],
-body.rosa-enabled.rosa-hide-logo [aria-label*="profile"] *,
-body.rosa-enabled.rosa-hide-logo [aria-label*="Account"],
-body.rosa-enabled.rosa-hide-logo [aria-label*="Account"] *,
-body.rosa-enabled.rosa-hide-logo [aria-label*="Google Account"],
-body.rosa-enabled.rosa-hide-logo [aria-label*="Google Account"] *,
-body.rosa-enabled.rosa-hide-logo [data-identifier],
-body.rosa-enabled.rosa-hide-logo [data-identifier] *,
-body.rosa-enabled.rosa-hide-logo .gb_d,
-body.rosa-enabled.rosa-hide-logo .gb_d *,
-body.rosa-enabled.rosa-hide-logo header > div:last-child,
-body.rosa-enabled.rosa-hide-logo header > div:last-child * {
-  display: block !important;
-  visibility: visible !important;
-  width: auto !important;
-  height: auto !important;
-  overflow: visible !important;
-}
+/* Avatar elements should display normally - no overrides needed */
 
-/* Hide just the "Calendar" text and icon elements */
-body.rosa-enabled.rosa-hide-logo [role="banner"] span:has(+ [aria-label*="Main menu"]),
-body.rosa-enabled.rosa-hide-logo [role="banner"] h1:has(img),
-body.rosa-enabled.rosa-hide-logo header span[class*="gb"],
-body.rosa-enabled.rosa-hide-logo [role="banner"] .gb_Pc,
-body.rosa-enabled.rosa-hide-logo [role="banner"] > div:first-child svg,
-body.rosa-enabled.rosa-hide-logo header > div > div:first-child > a,
-body.rosa-enabled.rosa-hide-logo header > div > a:first-child {
+/* Hide ONLY the Calendar logo container and text - specific classes to avoid hiding avatar */
+body.rosa-enabled.rosa-hide-logo [role="banner"] .gb_Uc,
+body.rosa-enabled.rosa-hide-logo [role="banner"] .gb_Vc,
+body.rosa-enabled.rosa-hide-logo [role="banner"] .gb_Wc,
+body.rosa-enabled.rosa-hide-logo [role="banner"] .gb_Rd,
+body.rosa-enabled.rosa-hide-logo [role="banner"] span[aria-label="Calendar"],
+body.rosa-enabled.rosa-hide-logo [role="banner"] h1:has(img) {
   display: none !important;
   visibility: hidden !important;
 }

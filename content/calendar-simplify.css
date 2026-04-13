@@ -7,6 +7,11 @@ body.rosa-enabled [aria-label="Google apps"] {
   display: none !important;
 }
 
+/* Hide right details panel */
+body.rosa-enabled [data-keeps-details-open] {
+  display: none !important;
+}
+
 /* Hide search bar to var(--background-grid-line-color)uce clutter */
 body.rosa-enabled [aria-label="Search for people, events, and more"],
 body.rosa-enabled input[aria-label="Search"] {
@@ -124,6 +129,17 @@ body.rosa-enabled [role="presentation"] {
   border-color: rgba(0, 0, 0, 0.06) !important;
 }
 
+/* Match main background to calendar background and remove bottom margin */
+body.rosa-enabled [role="main"] {
+  background-color: #2d2d2d !important;
+  margin-bottom: 0 !important;
+}
+
+/* Match event details panel background to calendar */
+body.rosa-enabled .tEBMXd {
+  background-color: #2d2d2d !important;
+}
+
 /* Focus mode - dim past events */
 body.rosa-enabled.rosa-focus-mode [data-draggable-id] {
   opacity: 0.4;
@@ -139,8 +155,12 @@ body.rosa-enabled header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
 }
 
-/* Hide promotional banners */
-body.rosa-enabled [role="banner"]:not(header) {
+/* Hide promotional banners and bottom bars */
+body.rosa-enabled [role="banner"]:not(header),
+body.rosa-enabled [role="complementary"][aria-label*="promo"],
+body.rosa-enabled [data-promo],
+body.rosa-enabled .gb_g,
+body.rosa-enabled [jsname*="promo"] {
   display: none !important;
 }
 

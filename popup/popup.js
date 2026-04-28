@@ -12,7 +12,6 @@ const subtleHeaderToggle = document.getElementById('subtleHeaderToggle');
 const subtleTimesToggle = document.getElementById('subtleTimesToggle');
 const subtleDatesToggle = document.getElementById('subtleDatesToggle');
 const hideLogoToggle = document.getElementById('hideLogoToggle');
-const limitHoursToggle = document.getElementById('limitHoursToggle');
 const styleCreateToggle = document.getElementById('styleCreateToggle');
 
 // Load saved settings
@@ -29,7 +28,6 @@ chrome.storage.sync.get([
   'rosaSubtleTimes',
   'rosaSubtleDates',
   'rosaHideLogo',
-  'rosaLimitHours',
   'rosaStyleCreate'
 ], (result) => {
   rosaToggle.checked = result.rosaEnabled !== false; // Default to enabled
@@ -44,7 +42,6 @@ chrome.storage.sync.get([
   subtleTimesToggle.checked = result.rosaSubtleTimes || false;
   subtleDatesToggle.checked = result.rosaSubtleDates || false;
   hideLogoToggle.checked = result.rosaHideLogo || false;
-  limitHoursToggle.checked = result.rosaLimitHours || false;
   styleCreateToggle.checked = result.rosaStyleCreate || false;
 });
 
@@ -62,7 +59,6 @@ function updateSettings() {
   const subtleTimes = subtleTimesToggle.checked;
   const subtleDates = subtleDatesToggle.checked;
   const hideLogo = hideLogoToggle.checked;
-  const limitHours = limitHoursToggle.checked;
   const styleCreate = styleCreateToggle.checked;
 
   // Send message to content script (only if on Google Calendar)
@@ -84,7 +80,6 @@ function updateSettings() {
           subtleTimes,
           subtleDates,
           hideLogo,
-          limitHours,
           styleCreate
         },
         (response) => {
@@ -161,11 +156,6 @@ subtleDatesToggle.addEventListener('change', () => {
 
 hideLogoToggle.addEventListener('change', () => {
   chrome.storage.sync.set({ rosaHideLogo: hideLogoToggle.checked });
-  updateSettings();
-});
-
-limitHoursToggle.addEventListener('change', () => {
-  chrome.storage.sync.set({ rosaLimitHours: limitHoursToggle.checked });
   updateSettings();
 });
 

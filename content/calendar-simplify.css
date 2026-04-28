@@ -12,6 +12,11 @@ body.rosa-enabled [data-keeps-details-open] {
   display: none !important;
 }
 
+/* Remove background from all-day events gridcell */
+body.rosa-enabled .qLWd9c {
+  background: #2d2d2d !important;
+}
+
 /* Glass-morphism Create button - optional feature (expanded and collapsed states) */
 body.rosa-enabled.rosa-style-create button[jsname="todz4c"] {
   background: linear-gradient(135deg,
@@ -60,6 +65,11 @@ body.rosa-enabled [data-stacked-layout-chip] {
 /* Remove border-right from event continuation arrows */
 body.rosa-enabled .PxbABe.hyd2Ge.SmDJBf {
   border-right: none !important;
+}
+
+/* Hide event continuation arrows */
+body.rosa-enabled .PxbABe.hyd2Ge.gpOGPc {
+  display: none !important;
 }
 
 /* Softer corners - 2x border radius */
@@ -381,16 +391,3 @@ body.rosa-enabled.rosa-hide-logo .UyW9db {
   font-weight: 500 !important;
 }
 
-/* Limit Hours - hide hours before 6am and after 8pm */
-body.rosa-enabled.rosa-limit-hours [data-hour="0"],
-body.rosa-enabled.rosa-limit-hours [data-hour="1"],
-body.rosa-enabled.rosa-limit-hours [data-hour="2"],
-body.rosa-enabled.rosa-limit-hours [data-hour="3"],
-body.rosa-enabled.rosa-limit-hours [data-hour="4"],
-body.rosa-enabled.rosa-limit-hours [data-hour="5"],
-body.rosa-enabled.rosa-limit-hours [data-hour="20"],
-body.rosa-enabled.rosa-limit-hours [data-hour="21"],
-body.rosa-enabled.rosa-limit-hours [data-hour="22"],
-body.rosa-enabled.rosa-limit-hours [data-hour="23"] {
-  display: none !important;
-}

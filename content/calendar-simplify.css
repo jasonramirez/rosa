@@ -33,6 +33,11 @@ body.rosa-enabled [data-stacked-layout-chip] {
   box-shadow: none !important;
 }
 
+/* Remove border-right from event continuation arrows */
+body.rosa-enabled .PxbABe.hyd2Ge.SmDJBf {
+  border-right: none !important;
+}
+
 /* Softer corners - 2x border radius */
 body.rosa-enabled.rosa-softer-corners [data-draggable-id],
 body.rosa-enabled.rosa-softer-corners [data-eventchip],
@@ -229,8 +234,8 @@ body.rosa-enabled.rosa-hide-logo [role="banner"] h1:has(img) {
 
 /* Shift navigation controls (Today, arrows, Month) to the left when logo is hidden */
 body.rosa-enabled.rosa-hide-logo [role="banner"] {
-  padding-left: 0px !important;
-  gap: 8px !important;
+  padding-left: 16px !important;
+  gap: 16px !important;
   justify-content: flex-start !important;
 }
 
@@ -238,6 +243,7 @@ body.rosa-enabled.rosa-hide-logo [role="banner"] {
 body.rosa-enabled.rosa-hide-logo .gb_Td.gb_sd {
   padding-left: 0 !important;
   margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 /* Remove margin from the navigation container and buttons */
@@ -317,6 +323,13 @@ body.rosa-enabled.rosa-hide-logo [role="banner"] [aria-label*="Date selector"] h
 body.rosa-enabled.rosa-hide-logo .gb_Td {
   min-width: 0 !important;
   width: auto !important;
+}
+
+/* Remove min-width from header container to allow proper collapse */
+body.rosa-enabled.rosa-hide-logo .gb_Xd {
+  min-width: 0 !important;
+  width: auto !important;
+  padding-right: 12px !important;
 }
 
 /* Style the dropdown selector (Week/Month/Year view) to match Today button */

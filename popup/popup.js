@@ -12,6 +12,7 @@ const subtleHeaderToggle = document.getElementById('subtleHeaderToggle');
 const subtleTimesToggle = document.getElementById('subtleTimesToggle');
 const subtleDatesToggle = document.getElementById('subtleDatesToggle');
 const hideLogoToggle = document.getElementById('hideLogoToggle');
+const limitHoursToggle = document.getElementById('limitHoursToggle');
 
 // Load saved settings
 chrome.storage.sync.get([
@@ -26,7 +27,8 @@ chrome.storage.sync.get([
   'rosaSubtleHeader',
   'rosaSubtleTimes',
   'rosaSubtleDates',
-  'rosaHideLogo'
+  'rosaHideLogo',
+  'rosaLimitHours'
 ], (result) => {
   rosaToggle.checked = result.rosaEnabled !== false; // Default to enabled
   focusToggle.checked = result.rosaFocusMode || false;
@@ -40,6 +42,7 @@ chrome.storage.sync.get([
   subtleTimesToggle.checked = result.rosaSubtleTimes || false;
   subtleDatesToggle.checked = result.rosaSubtleDates || false;
   hideLogoToggle.checked = result.rosaHideLogo || false;
+  limitHoursToggle.checked = result.rosaLimitHours || false;
 });
 
 // Handle toggle changes
@@ -56,6 +59,7 @@ function updateSettings() {
   const subtleTimes = subtleTimesToggle.checked;
   const subtleDates = subtleDatesToggle.checked;
   const hideLogo = hideLogoToggle.checked;
+  const limitHours = limitHoursToggle.checked;
 
   // Send message to content script (only if on Google Calendar)
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -75,7 +79,8 @@ function updateSettings() {
           subtleHeader,
           subtleTimes,
           subtleDates,
-          hideLogo
+          hideLogo,
+          limitHours
         },
         (response) => {
           // Ignore errors (e.g., if content script isn't loaded yet)
@@ -151,5 +156,10 @@ subtleDatesToggle.addEventListener('change', () => {
 
 hideLogoToggle.addEventListener('change', () => {
   chrome.storage.sync.set({ rosaHideLogo: hideLogoToggle.checked });
+  updateSettings();
+});
+
+limitHoursToggle.addEventListener('change', () => {
+  chrome.storage.sync.set({ rosaLimitHours: limitHoursToggle.checked });
   updateSettings();
 });

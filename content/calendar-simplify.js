@@ -13,7 +13,8 @@ chrome.storage.sync.get([
   'rosaSubtleHeader',
   'rosaSubtleTimes',
   'rosaSubtleDates',
-  'rosaHideLogo'
+  'rosaHideLogo',
+  'rosaLimitHours'
 ], (result) => {
   const enabled = result.rosaEnabled !== false; // Default to enabled
   const focusMode = result.rosaFocusMode || false;
@@ -27,8 +28,9 @@ chrome.storage.sync.get([
   const subtleTimes = result.rosaSubtleTimes || false;
   const subtleDates = result.rosaSubtleDates || false;
   const hideLogo = result.rosaHideLogo || false;
+  const limitHours = result.rosaLimitHours || false;
 
-  applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, dottedUnaccepted, hideNavButtons, subtleHeader, subtleTimes, subtleDates, hideLogo);
+  applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, dottedUnaccepted, hideNavButtons, subtleHeader, subtleTimes, subtleDates, hideLogo, limitHours);
 });
 
 // Listen for toggle from popup
@@ -46,12 +48,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       message.subtleHeader,
       message.subtleTimes,
       message.subtleDates,
-      message.hideLogo
+      message.hideLogo,
+      message.limitHours
     );
   }
 });
 
-function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, dottedUnaccepted, hideNavButtons, subtleHeader, subtleTimes, subtleDates, hideLogo) {
+function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, dottedUnaccepted, hideNavButtons, subtleHeader, subtleTimes, subtleDates, hideLogo, limitHours) {
   if (enabled) {
     document.body.classList.add('rosa-enabled');
 
@@ -120,6 +123,12 @@ function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eve
     } else {
       document.body.classList.remove('rosa-hide-logo');
     }
+
+    if (limitHours) {
+      document.body.classList.add('rosa-limit-hours');
+    } else {
+      document.body.classList.remove('rosa-limit-hours');
+    }
   } else {
     document.body.classList.remove(
       'rosa-enabled',
@@ -133,7 +142,8 @@ function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eve
       'rosa-subtle-header',
       'rosa-subtle-times',
       'rosa-subtle-dates',
-      'rosa-hide-logo'
+      'rosa-hide-logo',
+      'rosa-limit-hours'
     );
   }
 }

@@ -13,6 +13,7 @@ const subtleTimesToggle = document.getElementById('subtleTimesToggle');
 const subtleDatesToggle = document.getElementById('subtleDatesToggle');
 const hideLogoToggle = document.getElementById('hideLogoToggle');
 const limitHoursToggle = document.getElementById('limitHoursToggle');
+const styleCreateToggle = document.getElementById('styleCreateToggle');
 
 // Load saved settings
 chrome.storage.sync.get([
@@ -28,7 +29,8 @@ chrome.storage.sync.get([
   'rosaSubtleTimes',
   'rosaSubtleDates',
   'rosaHideLogo',
-  'rosaLimitHours'
+  'rosaLimitHours',
+  'rosaStyleCreate'
 ], (result) => {
   rosaToggle.checked = result.rosaEnabled !== false; // Default to enabled
   focusToggle.checked = result.rosaFocusMode || false;
@@ -43,6 +45,7 @@ chrome.storage.sync.get([
   subtleDatesToggle.checked = result.rosaSubtleDates || false;
   hideLogoToggle.checked = result.rosaHideLogo || false;
   limitHoursToggle.checked = result.rosaLimitHours || false;
+  styleCreateToggle.checked = result.rosaStyleCreate || false;
 });
 
 // Handle toggle changes
@@ -60,6 +63,7 @@ function updateSettings() {
   const subtleDates = subtleDatesToggle.checked;
   const hideLogo = hideLogoToggle.checked;
   const limitHours = limitHoursToggle.checked;
+  const styleCreate = styleCreateToggle.checked;
 
   // Send message to content script (only if on Google Calendar)
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -80,7 +84,8 @@ function updateSettings() {
           subtleTimes,
           subtleDates,
           hideLogo,
-          limitHours
+          limitHours,
+          styleCreate
         },
         (response) => {
           // Ignore errors (e.g., if content script isn't loaded yet)
@@ -161,5 +166,10 @@ hideLogoToggle.addEventListener('change', () => {
 
 limitHoursToggle.addEventListener('change', () => {
   chrome.storage.sync.set({ rosaLimitHours: limitHoursToggle.checked });
+  updateSettings();
+});
+
+styleCreateToggle.addEventListener('change', () => {
+  chrome.storage.sync.set({ rosaStyleCreate: styleCreateToggle.checked });
   updateSettings();
 });

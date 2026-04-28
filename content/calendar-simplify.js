@@ -14,7 +14,8 @@ chrome.storage.sync.get([
   'rosaSubtleTimes',
   'rosaSubtleDates',
   'rosaHideLogo',
-  'rosaLimitHours'
+  'rosaLimitHours',
+  'rosaStyleCreate'
 ], (result) => {
   const enabled = result.rosaEnabled !== false; // Default to enabled
   const focusMode = result.rosaFocusMode || false;
@@ -29,8 +30,9 @@ chrome.storage.sync.get([
   const subtleDates = result.rosaSubtleDates || false;
   const hideLogo = result.rosaHideLogo || false;
   const limitHours = result.rosaLimitHours || false;
+  const styleCreate = result.rosaStyleCreate || false;
 
-  applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, dottedUnaccepted, hideNavButtons, subtleHeader, subtleTimes, subtleDates, hideLogo, limitHours);
+  applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, dottedUnaccepted, hideNavButtons, subtleHeader, subtleTimes, subtleDates, hideLogo, limitHours, styleCreate);
 });
 
 // Listen for toggle from popup
@@ -49,12 +51,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       message.subtleTimes,
       message.subtleDates,
       message.hideLogo,
-      message.limitHours
+      message.limitHours,
+      message.styleCreate
     );
   }
 });
 
-function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, dottedUnaccepted, hideNavButtons, subtleHeader, subtleTimes, subtleDates, hideLogo, limitHours) {
+function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eventShadow, dottedUnaccepted, hideNavButtons, subtleHeader, subtleTimes, subtleDates, hideLogo, limitHours, styleCreate) {
   if (enabled) {
     document.body.classList.add('rosa-enabled');
 
@@ -129,6 +132,12 @@ function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eve
     } else {
       document.body.classList.remove('rosa-limit-hours');
     }
+
+    if (styleCreate) {
+      document.body.classList.add('rosa-style-create');
+    } else {
+      document.body.classList.remove('rosa-style-create');
+    }
   } else {
     document.body.classList.remove(
       'rosa-enabled',
@@ -143,7 +152,8 @@ function applyRosa(enabled, focusMode, dimGrid, softerCorners, eventBorders, eve
       'rosa-subtle-times',
       'rosa-subtle-dates',
       'rosa-hide-logo',
-      'rosa-limit-hours'
+      'rosa-limit-hours',
+      'rosa-style-create'
     );
   }
 }

@@ -12,6 +12,30 @@ body.rosa-enabled [data-keeps-details-open] {
   display: none !important;
 }
 
+/* Glass-morphism Create button - optional feature (expanded and collapsed states) */
+body.rosa-enabled.rosa-style-create button[jsname="todz4c"] {
+  background: linear-gradient(135deg,
+    rgba(120, 140, 180, 0.45) 0%,
+    rgba(100, 130, 170, 0.4) 50%,
+    rgba(150, 110, 80, 0.42) 100%) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
+  transition: all 0.3s ease !important;
+}
+
+body.rosa-enabled.rosa-style-create button[jsname="todz4c"]:hover {
+  background: linear-gradient(135deg,
+    rgba(130, 150, 190, 0.55) 0%,
+    rgba(110, 140, 180, 0.5) 50%,
+    rgba(160, 120, 90, 0.52) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45) !important;
+  transform: translateY(-2px) !important;
+}
+
 /* Hide search bar to var(--background-grid-line-color)uce clutter */
 body.rosa-enabled [aria-label="Search for people, events, and more"],
 body.rosa-enabled input[aria-label="Search"] {

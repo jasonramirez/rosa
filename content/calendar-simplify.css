@@ -82,6 +82,11 @@ body.rosa-enabled.rosa-subtle-header [data-enable-grid-navigation] {
   background-color: #2d2d2d !important;
 }
 
+/* Left navigation sidebar - ONLY background color, no other changes */
+body.rosa-enabled.rosa-subtle-header .YO50ue {
+  background-color: #2d2d2d !important;
+}
+
 /* Remove background from specific elements */
 body.rosa-enabled.rosa-subtle-header .R6TFwe,
 body.rosa-enabled.rosa-subtle-header .g28fdb.F262Ye,
